@@ -1,0 +1,14 @@
+<div id="TrackingMore-pre-sales-edd"></div>
+<script>
+  window.TmShopLocale = '{{ request.locale.iso_code }}';
+  window.TmPermanentDomain = '{{ shop.permanent_domain }}';
+  window.TmProductId = '{{ product.id }}';
+  window.TmCartItems = {{ cart.items | json }};
+  window.TmPluginBackground = '{{ settings.background }}';
+  window.TmPluginColor = '{{ settings.color }}';
+  window.TmBorderColor = '{{ settings.borderColor }}';
+  if (!window.TmPluginBackground) window.TmPluginBackground = '#fff';
+  if (!window.TmPluginColor) window.TmPluginColor = '#000';
+  if (!window.TmBorderColor) window.TmBorderColor = '#C8C8C8';
+</script>
+<script type="module" defer="defer" src="{{ 'pre_edd_index.js' | asset_url }}"></script>

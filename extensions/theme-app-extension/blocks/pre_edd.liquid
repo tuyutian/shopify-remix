@@ -1,0 +1,32 @@
+{% render 'pre_edd' , settings: block.settings %}
+{% schema %}
+{
+  "name": "TrackingMore EDD",
+  "target": "section",
+  "enabled_on": {
+    "templates": ["product","cart"]
+  },
+  "stylesheet": "pre_edd_index.css",
+
+  "settings": [
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "Background",
+      "default": "linear-gradient(0deg, rgba(255, 255, 255,1) 100%, rgba(0, 0, 0,1) 100%)"
+    },
+    {
+      "label": "Text color",
+      "id": "color",
+      "type": "color",
+      "default": "#000000"
+    },
+    {
+      "label": "Border color",
+      "id": "borderColor",
+      "type": "color",
+      "default": "#C8C8C8"
+    }
+  ]
+}
+{% endschema %}

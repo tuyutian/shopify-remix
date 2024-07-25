@@ -1,0 +1,14 @@
+<div id="TrackingMore-tracking-widget"></div>
+<script>
+  window.moneyFormat={{ shop.money_format | json }}
+  window.TmPermanentDomain = '{{ shop.permanent_domain }}';
+  window.TmBrandType = '{{ settings.TmBrandType }}'
+  window.TmBrandLR = {{ settings.TmBrandLR }}
+  if(!window.TmBrandType){
+      window.TmBrandType = '0';
+  }
+  if(!window.TmBrandLR){
+      window.TmBrandLR = false;
+  }
+</script>
+<script type="module" defer="defer" src="{{ 'tracking_index.js' | asset_url }}"></script>
