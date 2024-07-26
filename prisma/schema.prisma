@@ -13,21 +13,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Session {
-  id            String    @id
-  shop          String
-  state         String
-  isOnline      Boolean   @default(false)
-  scope         String?
-  expires       DateTime?
-  accessToken   String
-  userId        BigInt?
-  firstName     String?
-  lastName      String?
-  email         String?
-  accountOwner  Boolean   @default(false)
-  locale        String?
-  collaborator  Boolean?  @default(false)
-  emailVerified Boolean?  @default(false)
-  uid           BigInt
+model sessions {
+  session_id          String    @unique
+  shop                String
+  is_online           Int      @db.TinyInt
+  state               String
+  created_at          DateTime?
+  updated_at          DateTime?
+  scope               String?
+  access_token        String?
+  expires_at          DateTime?
+  user_id             BigInt?
+  user_first_name     String?
+  user_last_name      String?
+  user_email          String?
+  user_email_verified Int?      @db.TinyInt
+  account_owner       Int?      @db.TinyInt
+  locale              String?
+  collaborator        Int?      @db.TinyInt
+  uid                 BigInt?
 }

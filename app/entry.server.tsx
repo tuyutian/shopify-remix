@@ -9,6 +9,7 @@ import { isbot } from "isbot";
 import { addDocumentResponseHeaders } from "./shopify.server";
 
 const ABORT_DELAY = 5000;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 export default async function handleRequest(
   request: Request,

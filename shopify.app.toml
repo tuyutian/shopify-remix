@@ -3,7 +3,7 @@
 client_id = "4eac2d5386e7278461cda60a1db83bbe"
 name = "Trackingmore App Test"
 handle = "trackingmore-app-test"
-application_url = "https://declined-parking-selected-unix.trycloudflare.com"
+application_url = "https://forming-included-safari-dancing.trycloudflare.com"
 embedded = true
 
 [build]
@@ -12,24 +12,26 @@ dev_store_url = "tuyutian.myshopify.com"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_orders,read_all_orders,write_orders,read_script_tags,write_script_tags,read_shipping,read_products,read_customers,read_themes,write_merchant_managed_fulfillment_orders,write_third_party_fulfillment_orders"
 use_legacy_install_flow = true
 
 [auth]
 redirect_urls = [
-  "https://declined-parking-selected-unix.trycloudflare.com/auth/callback",
-  "https://declined-parking-selected-unix.trycloudflare.com/auth/shopify/callback",
-  "https://declined-parking-selected-unix.trycloudflare.com/api/auth/callback"
+  "https://forming-included-safari-dancing.trycloudflare.com/auth/callback",
+  "https://forming-included-safari-dancing.trycloudflare.com/auth/shopify/callback",
+  "https://forming-included-safari-dancing.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-01"
 
   [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled","shop/update","subscription/update","order/update","order/create" ]
   uri = "https://webhook.trackingmore.net/api/v1/webhook/shopify"
   compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
 
 [app_proxy]
-url = "https://declined-parking-selected-unix.trycloudflare.com/track-page"
+url = "https://forming-included-safari-dancing.trycloudflare.com/track-page"
 subpath = "trackingmoretest"
 prefix = "apps"
 
