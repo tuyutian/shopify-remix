@@ -2,6 +2,7 @@ import {Session} from "@shopify/shopify-api";
 import type {SessionStorage} from "@shopify/shopify-app-session-storage";
 import type {PrismaClient, sessions as Row} from "@prisma/client";
 import {Prisma} from "@prisma/client";
+import AppService from "~/services/appService";
 
 interface PrismaSessionStorageOptions {
   tableName?: string;
@@ -62,6 +63,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
         update: data,
         create: data,
       });
+      await this.createUserBySession(session)
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
@@ -75,6 +77,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
           update: data,
           create: data,
         });
+        await this.createUserBySession(session)
         return true;
       }
       throw error;
@@ -83,6 +86,13 @@ export class PrismaSessionStorage<T extends PrismaClient>
     return true;
   }
 
+  private async createUserBySession(session:Session) {
+    if (session.id) {
+      return await AppService.saveUser(session.id)
+    }
+    return true;
+  }
+  
   public async loadSession(id: string): Promise<Session | undefined> {
     await this.ready;
 
@@ -188,7 +198,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
       firstName: String(row.user_first_name),
       lastName: String(row.user_last_name),
       email: String(row.user_email),
-      locale: String(row.locale),
+      locale: String(row.locale)
     };
     if (row.account_owner !== null) {
       sessionParams.accountOwner = row.account_owner;

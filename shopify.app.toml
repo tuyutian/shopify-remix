@@ -3,7 +3,7 @@
 client_id = "63587785c0faae3ba8bcc93a3e00257e"
 name = "TrackingMore-Remix test"
 handle = "trackingmore-remix-test"
-application_url = "https://twins-mesh-everyone-lt.trycloudflare.com"
+application_url = "https://tar-bleeding-bridge-pan.trycloudflare.com"
 embedded = true
 
 [build]
@@ -14,13 +14,12 @@ include_config_on_deploy = true
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "read_customers,read_orders,read_products,read_script_tags,read_shipping,read_themes,write_merchant_managed_fulfillment_orders,write_orders,write_script_tags,write_third_party_fulfillment_orders"
-use_legacy_install_flow = false
 
 [auth]
 redirect_urls = [
-  "https://twins-mesh-everyone-lt.trycloudflare.com/auth/callback",
-  "https://twins-mesh-everyone-lt.trycloudflare.com/auth/shopify/callback",
-  "https://twins-mesh-everyone-lt.trycloudflare.com/api/auth/callback"
+  "https://tar-bleeding-bridge-pan.trycloudflare.com/auth/callback",
+  "https://tar-bleeding-bridge-pan.trycloudflare.com/auth/shopify/callback",
+  "https://tar-bleeding-bridge-pan.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
@@ -29,14 +28,11 @@ api_version = "2024-01"
   [[webhooks.subscriptions]]
   topics = [ "app_subscriptions/update", "app/uninstalled", "shop/update" ]
   uri = "https://webhook.trackingmore.net/api/v1/webhook/shopify"
-
-  [[webhooks.subscriptions]]
-  uri = "https://webhook.trackingmore.net/api/v1/webhook/shopify"
   compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
 
 [app_proxy]
-url = "https://twins-mesh-everyone-lt.trycloudflare.com/track-page"
-subpath = "trackingmoretest"
+url = "https://tar-bleeding-bridge-pan.trycloudflare.com/track-page"
+subpath = "trackingmore-remix"
 prefix = "apps"
 
 [pos]

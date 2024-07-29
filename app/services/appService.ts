@@ -15,4 +15,10 @@ export default class AppService extends Service{
       return res.json();
     });
   }
+
+  static async saveUser(session_id:string){
+    return this.sendGetRequest("session/install/"+session_id).then((res) => {
+      return res.json();
+    });
+  }
 }
