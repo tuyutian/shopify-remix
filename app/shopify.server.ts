@@ -6,7 +6,7 @@ import {
 } from "@shopify/shopify-app-remix/server";
 import { restResources } from "@shopify/shopify-api/rest/admin/2024-07";
 import prisma from "./db.server";
-import {MysqlSessionStorage} from "~/session/MysqlSessionStorage";
+import {PrismaSessionStorage} from "~/session/PrismaSessionStorage";
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY,
@@ -15,7 +15,7 @@ const shopify = shopifyApp({
   scopes: process.env.SCOPES?.split(","),
   appUrl: process.env.SHOPIFY_APP_URL || "",
   authPathPrefix: "/auth",
-  sessionStorage: new MysqlSessionStorage(prisma),
+  sessionStorage: new PrismaSessionStorage(prisma),
   distribution: AppDistribution.AppStore,
   restResources,
   future: {
