@@ -1,6 +1,6 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "63587785c0faae3ba8bcc93a3e00257e"
+client_id = "xxxx"
 name = "TrackingMore-Remix test"
 handle = "trackingmore-remix-test"
 application_url = "https://reform-widespread-concentrate-science.trycloudflare.com"
@@ -8,7 +8,7 @@ embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "tuyutian.myshopify.com"
+dev_store_url = "xxxx.myshopify.com"
 include_config_on_deploy = true
 
 [access_scopes]
@@ -27,7 +27,7 @@ api_version = "2024-01"
 
   [[webhooks.subscriptions]]
   topics = [ "app_subscriptions/update", "app/uninstalled", "shop/update" ]
-  uri = "https://webhook.trackingmore.net/api/v1/webhook/shopify"
+  uri = "https://reform-widespread-concentrate-science.trycloudflare.com/webhook/shopify"
   compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
 
 [app_proxy]
@@ -39,4 +39,4 @@ prefix = "apps"
 embedded = false
 
 [app_preferences]
-url = "https://fe.trackingmore.net/"
+url = "https://reform-widespread-concentrate-science.trycloudflare.com/track-page/"
