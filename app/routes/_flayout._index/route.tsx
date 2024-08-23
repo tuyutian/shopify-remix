@@ -1,11 +1,12 @@
 import type {LoaderFunctionArgs} from "@remix-run/node";
 import {json, redirect} from "@remix-run/node";
-import {Form, MetaFunction, useLoaderData, useSubmit} from "@remix-run/react";
+import type { MetaFunction} from "@remix-run/react";
+import {Form, useLoaderData, useSubmit} from "@remix-run/react";
 
 import {login} from "~/shopify.server";
 import {useCallback, useState} from "react";
 import {Button, Input} from "@nextui-org/react";
-import {SubmitTarget} from "react-router-dom/dist/dom";
+import type {SubmitTarget} from "react-router-dom/dist/dom";
 
 export const loader = async ({request}: LoaderFunctionArgs) => {
   const url = new URL(request.url);
@@ -38,11 +39,11 @@ export default function App() {
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (shopName.length > 0) {
-      submit(e.target as SubmitTarget);
+      submit(e.currentTarget as SubmitTarget);
     } else {
       setError(true);
     }
-  }, [shopName]);
+  }, [shopName.length, submit]);
   return <div className="mx-auto container  w-full ">
     <div className="pt-36 text-center">
       <h1
