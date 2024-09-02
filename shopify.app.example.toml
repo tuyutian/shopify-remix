@@ -3,7 +3,7 @@
 client_id = "xxxx"
 name = "TrackingMore-Remix test"
 handle = "trackingmore-remix-test"
-application_url = "https://reform-widespread-concentrate-science.trycloudflare.com"
+application_url = "https://fe.trackingmore.net"
 embedded = true
 
 [build]
@@ -17,26 +17,26 @@ scopes = "read_all_orders,read_customers,read_orders,read_products,read_script_t
 
 [auth]
 redirect_urls = [
-  "https://reform-widespread-concentrate-science.trycloudflare.com/auth/callback",
-  "https://reform-widespread-concentrate-science.trycloudflare.com/auth/shopify/callback",
-  "https://reform-widespread-concentrate-science.trycloudflare.com/api/auth/callback"
+  "https://fe.trackingmore.net/auth/callback",
+  "https://fe.trackingmore.net/auth/shopify/callback",
+  "https://fe.trackingmore.net/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-01"
 
-  [[webhooks.subscriptions]]
-  topics = [ "app_subscriptions/update", "app/uninstalled", "shop/update" ]
-  uri = "https://reform-widespread-concentrate-science.trycloudflare.com/webhook/shopify"
-  compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
+[[webhooks.subscriptions]]
+topics = [ "app_subscriptions/update", "app/uninstalled", "shop/update" ]
+uri = "https://webhook.trackingmore.net/api/v1/webhook/shopify"
+compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
 
 [app_proxy]
-url = "https://reform-widespread-concentrate-science.trycloudflare.com/track-page"
-subpath = "trackingmore-remix"
+url = "https://fe.trackingmore.net/track-page"
+subpath = "trackingmoretest"
 prefix = "apps"
 
 [pos]
 embedded = false
 
 [app_preferences]
-url = "https://reform-widespread-concentrate-science.trycloudflare.com/track-page/"
+url = "https://fe.trackingmore.net/"

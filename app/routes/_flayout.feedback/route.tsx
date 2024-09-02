@@ -40,10 +40,10 @@ export const action = async ({
     }
     await prisma.feedback.create({
       data:{
-        email,
-        type:(typeof feedbackType === "string") ? parseInt(feedbackType) :feedbackType,
+        email:email as string,
+        type:parseInt(feedbackType as string),
         star:3,
-        message:comment,
+        message:comment as string,
       }
     })
     return json({ message: 'Submit successful!' }, { status: 200 });
