@@ -54,7 +54,6 @@ export const action = async ({
 
 export default function Feedback() {
   const data = useActionData<typeof action>();
-  console.log(data);
   const [feedbackType, setFeedbackType] = useState<undefined | string>(undefined);
   const [comment, setComment] = useState<undefined | string>(undefined);
   const [submitSuccess, setSubmitSuccess] = useState(true);
@@ -112,7 +111,7 @@ export default function Feedback() {
         </div>
       </div>:""}
       <p>Your feedback means A LOT to us! Thank you</p>
-      <Form ref={formRef} onSubmit={handleSubmit} method="post" className="w-full ">
+      <Form ref={formRef} onSubmit={handleSubmit} method="post" className="w-full flex flex-col gap-3 items-start">
         <input type="hidden" name="_action" value="create" />
         <Input
           autoComplete="on"

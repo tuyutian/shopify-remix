@@ -31,9 +31,10 @@ if (process.env.NODE_ENV !== "production") {
     global.prisma = new PrismaClient(config);
   }
 }
+// @ts-ignore
 prisma.$on("query", (e:Prisma.QueryEvent ) => {
-  console.log('Query: ' + e.query)
-  console.log('Params: ' + e.params)
-  console.log('Duration: ' + e.duration + 'ms')
+  console.log(`Query: ${  e.query}`)
+  console.log(`Params: ${  e.params}`)
+  console.log(`Duration: ${  e.duration  }ms`)
 })
 export default prisma;

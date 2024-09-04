@@ -1,28 +1,48 @@
-export default class Service {
+import {API_VERSION} from "~/types/api";
 
-  protected static base_api_url: string = process.env.API_BASE_URL || "https://tms.trackingmore.net/api";
-  protected static api_version: string = process.env.API_VERSION || "v1";
-  private static defaultConfig:RequestInit = {
-    headers:{
-      "Accept": "application/json",
+export default class Service {
+  private static defaultConfig: RequestInit = {
+    headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
-    }
-  }
-  private static handleUrl(url:string,version: string = ""):string {
+    },
+  };
+
+  private static handleUrl(url: string, version: string = ""): string {
+    const base_api_url: string =
+      import.meta.env.VITE_API_BASE_URL || "https://tms.trackingmore.net/api";
+    const api_version: string = import.meta.env.VITE_API_VERSION || API_VERSION.V1;
     if (url.startsWith("http")) {
       return url;
     }
     if (version === "") {
-      version = this.api_version;
+      version = api_version;
     }
-    return `${this.base_api_url}/${version}/${url}`;
+    if (version === API_VERSION.NONE) {
+      return `${base_api_url}/${url}`;
+    }
+    if (version === API_VERSION.SELF) {
+      return `${import.meta.env.VITE_WEB_URL}/${url}`;
+    }
+    return `${base_api_url}/${version}/${url}`;
   }
 
-  public static sendGetRequest = (url: string, version: string = "", config?: RequestInit): Promise<Response> => {
-    return fetch(this.handleUrl(url,version), {...this.defaultConfig,...config});
+  public static sendGetRequest = (
+    url: string,
+    version: string = "",
+    config?: RequestInit,
+  ): Promise<Response> => {
+    return fetch(this.handleUrl(url, version), {
+      ...this.defaultConfig,
+      ...config,
+    });
   };
 
-  protected static sendDeleteRequest = (url: string, version = "", config?: RequestInit): Promise<Response> => {
+  protected static sendDeleteRequest = (
+    url: string,
+    version = "",
+    config?: RequestInit,
+  ): Promise<Response> => {
     if (config === undefined) {
       config = {
         method: "DELETE",
@@ -30,10 +50,18 @@ export default class Service {
     } else {
       config.method = "DELETE";
     }
-    return fetch(this.handleUrl(url,version), {...this.defaultConfig,...config});
+    return fetch(this.handleUrl(url, version), {
+      ...this.defaultConfig,
+      ...config,
+    });
   };
 
-  protected static sendPostRequest = (url: string, data?: any, version = "", config?: RequestInit): Promise<Response> => {
+  protected static sendPostRequest = (
+    url: string,
+    data?: any,
+    version = "",
+    config?: RequestInit,
+  ): Promise<Response> => {
     if (config === undefined) {
       config = {
         method: "POST",
@@ -43,10 +71,18 @@ export default class Service {
     }
     console.log(data);
     config.body = JSON.stringify(data);
-    return fetch(this.handleUrl(url,version), {...this.defaultConfig,...config});
+    return fetch(this.handleUrl(url, version), {
+      ...this.defaultConfig,
+      ...config,
+    });
   };
 
-  protected static sendPutRequest = (url: string, data?: any, version = "", config?: RequestInit): Promise<Response> => {
+  protected static sendPutRequest = (
+    url: string,
+    data?: any,
+    version = "",
+    config?: RequestInit,
+  ): Promise<Response> => {
     if (config === undefined) {
       config = {
         method: "PUT",
@@ -55,6 +91,9 @@ export default class Service {
       config.method = "PUT";
     }
     config.body = JSON.stringify(data);
-    return fetch(this.handleUrl(url,version), {...this.defaultConfig,...config});
+    return fetch(this.handleUrl(url, version), {
+      ...this.defaultConfig,
+      ...config,
+    });
   };
 }
