@@ -1,6 +1,7 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import React from "react";
+import prisma from "~/db.server";
 
 export async function loader() {
   const categories = await prisma.faq_categories.findMany({

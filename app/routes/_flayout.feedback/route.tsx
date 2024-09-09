@@ -6,6 +6,7 @@ import { useActionData,Form,useSubmit,useNavigation} from "@remix-run/react";
 import type {ActionFunctionArgs} from "@remix-run/node";
 import {json} from "@remix-run/node";
 import type {SubmitTarget} from "react-router-dom/dist/dom";
+import prisma from "~/db.server";
 
 export const meta: MetaFunction = () => {
   return [

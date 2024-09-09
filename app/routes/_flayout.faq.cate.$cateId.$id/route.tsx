@@ -8,6 +8,7 @@ import type { CategoriesPageData } from "~/routes/_flayout.faq";
 import type { MetaFunction } from "@remix-run/react";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 import FaqService from "~/services/faqService";
+import prisma from "~/db.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const id = params.id;

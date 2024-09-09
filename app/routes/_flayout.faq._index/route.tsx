@@ -5,7 +5,7 @@ import {json} from "@remix-run/node";
 import {type MetaFunction, useLoaderData} from "@remix-run/react";
 import {useViewport} from "~/hooks/viewport.hook";
 import type { FaqMenuList} from "~/routes/_flayout.faq";
-
+import prisma from "~/db.server";
 export const meta: MetaFunction = () => {
   return [{ title: "FAQ" }];
 };
