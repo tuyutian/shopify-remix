@@ -33,7 +33,7 @@ if (host === "localhost") {
     clientPort: 443,
   };
 }
-console.log(hmrConfig);
+
 export default defineConfig({
   server: {
     host: "0.0.0.0",

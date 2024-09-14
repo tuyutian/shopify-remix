@@ -9,7 +9,6 @@ import {
 } from "@remix-run/react";
 import {NextUIProvider} from "@nextui-org/react";
 import stylesheet from "tailwindcss/tailwind.css?url";
-import appStyle from "@/assets/styles/app.css?url";
 import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import i18next from "~/i18next.server";
 import { useTranslation } from "react-i18next";
@@ -21,7 +20,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
-  { rel: "stylesheet", href: appStyle },
 ];
 export default function App() {
   let { locale } = useLoaderData<typeof loader>();
