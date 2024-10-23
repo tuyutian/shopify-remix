@@ -1,10 +1,11 @@
 import Service from "~/services/Service";
 import {API_VERSION} from "~/types/api";
-
+import {generateToken} from "~/utils/jwt";
+import type { JwtPayload} from '@shopify/shopify-api';
 export default class AppService extends Service{
   static async authorization(param:URLSearchParams){
-    let jsonObject:any = {};
-    for (let [key, value] of param.entries()) {
+    const jsonObject:any = {};
+    for (const [key, value] of param.entries()) {
       jsonObject[key] = value;
     }
     return this.sendPostRequest("auth", jsonObject).then((res) => {
@@ -23,10 +24,9 @@ export default class AppService extends Service{
     });
   }
 
-  static async getOthers(accessToken:string|undefined) {
-    console.log(accessToken);
+  static async getOthers(payload:JwtPayload):Promise<any> {
     return await this.sendGetRequest("user_other",API_VERSION.V1,{headers:{
-      Authorization:`Bearer ${accessToken}`,
+      Authorization:`Bearer ${generateToken(payload)}`,
       }}).then(res=>res.json())
   }
 }

@@ -27,9 +27,9 @@ export default async function handleRequest(
     ? "onAllReady"
     : "onShellReady";
 
-  let instance = createInstance();
-  let lng = await i18next.getLocale(request);
-  let ns = i18next.getRouteNamespaces(remixContext);
+  const instance = createInstance();
+  const lng = await i18next.getLocale(request);
+  const ns = i18next.getRouteNamespaces(remixContext);
 
   await instance
     .use(initReactI18next) // Tell our instance to use react-i18next
@@ -39,15 +39,10 @@ export default async function handleRequest(
       lng, // The locale we detected above
       ns, // The namespaces the routes about to render wants to use
       backend: {
-        loadPath: `${process.env.VITE_API_BASE_URL}/v1/lang/{{lng}}`,
-        addPath: `${process.env.VITE_API_BASE_URL}/v1/lang/{{lng}}`,
+        loadPath: `/lang/{{lng}}`,
+        addPath: `/lang/{{lng}}`,
         parse: function (res:any) {
-          if (res.data&&res.data.length>0){
-            console.log(res.data.data[res.data.lang].translation);
-            return res.data.data[res.data.lang].translation;
-
-          }
-          return [];
+          return res;
         },
       },
     });

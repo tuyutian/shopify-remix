@@ -15,15 +15,10 @@ async function hydrate() {
       ...i18n, // spread the configuration
       ns: getInitialNamespaces(),
       backend: {
-        loadPath: `${import.meta.env.VITE_API_BASE_URL}/v1/lang/{{lng}}`,
-        addPath: `${import.meta.env.VITE_API_BASE_URL}/v1/lang/{{lng}}`,
+        loadPath: `/lang/{{lng}}`,
+        addPath: `/lang/{{lng}}`,
         parse: function (res:any) {
-          if (res.data&&res.data.length>0){
-            console.log(res.data.data[res.data.lang].translation);
-            return res.data.data[res.data.lang].translation;
-
-          }
-          return [];
+          return res;
         },
       },
       detection: {
@@ -41,11 +36,9 @@ async function hydrate() {
   startTransition(() => {
     hydrateRoot(
       document,
-      <I18nextProvider i18n={i18next}>
         <StrictMode>
           <RemixBrowser />
         </StrictMode>
-      </I18nextProvider>,
     );
   });
 }

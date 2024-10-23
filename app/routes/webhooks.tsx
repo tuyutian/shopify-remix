@@ -7,7 +7,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (!admin) {
     // The admin context isn't returned if the webhook fired after a shop was uninstalled.
-    throw new Response();
+    return new Response();
   }
 
   // The topics handled here should be declared in the shopify.app.toml.
@@ -23,8 +23,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     case "CUSTOMERS_REDACT":
     case "SHOP_REDACT":
     default:
-      throw new Response("Unhandled webhook topic", { status: 404 });
+      return new Response("Unhandled webhook topic", { status: 404 });
   }
 
-  throw new Response();
+  return new Response();
 };

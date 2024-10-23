@@ -1,6 +1,6 @@
-import type { InitOptions } from "i18next";
+import { InitOptions } from "i18next";
 
-const i18nConfig:Omit<InitOptions, "react" | "detection"> =  {
+const i18nConfig =  {
   // This is the list of languages your application supports
   supportedLngs: ["en", "es",'de','cn','it','fr'],
   // This is the language you want to use in case
@@ -8,8 +8,11 @@ const i18nConfig:Omit<InitOptions, "react" | "detection"> =  {
   fallbackLng: "en",
   load: 'languageOnly',
   // The default namespace of i18next is "translation", but you can customize it here
-  defaultNS: "common",
-  debug: process.env.NODE_ENV !== 'production',
-};
+  defaultNS: false,
+  debug: false,
+  interpolation: { escapeValue: false },
+  // Disable suspense mode. (Recommended).
+  react: { useSuspense: false },
+} satisfies InitOptions
 
 export default i18nConfig

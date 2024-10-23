@@ -1,0 +1,8 @@
+model translations {
+  id         Int       @id @default(autoincrement())
+  lang       String    @db.Char(5) ///语言分类
+  code       String    @db.VarChar(255) ///语言键
+  value      String    @db.Text ///翻译内容
+  created_at DateTime?
+  updated_at DateTime?
+}

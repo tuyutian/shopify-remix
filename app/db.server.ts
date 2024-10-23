@@ -24,6 +24,7 @@ const config:Prisma.PrismaClientOptions = {
     },
   ],
 }
+
 const prisma: PrismaClient = global.prisma || new PrismaClient(config);
 
 if (process.env.NODE_ENV !== "production") {
@@ -31,7 +32,7 @@ if (process.env.NODE_ENV !== "production") {
     global.prisma = new PrismaClient(config);
   }
 }
-// @ts-ignore
+// @ts-expect-error prisma log query
 prisma.$on("query", (e:Prisma.QueryEvent ) => {
   console.log(`Query: ${  e.query}`)
   console.log(`Params: ${  e.params}`)

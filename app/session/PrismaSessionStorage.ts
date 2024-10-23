@@ -44,7 +44,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
       throw new Error(`PrismaClient does not have a ${this.tableName} table`);
     }
 
-    this.ready = this.pollForTable().catch((cause) => {
+    this.ready = this.pollForTable().catch((cause: unknown) => {
       throw new MissingSessionTableError(
         `Prisma ${this.tableName} table does not exist. This could happen for a few reasons, see https://github.com/Shopify/shopify-app-js/tree/main/packages/apps/session-storage/shopify-app-session-storage-prisma#troubleshooting for more information`,
         cause,
@@ -92,7 +92,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
     }
     return true;
   }
-  
+
   public async loadSession(id: string): Promise<Session | undefined> {
     await this.ready;
 
@@ -135,7 +135,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
       take: 25,
       orderBy: [{expires_at: 'desc'}],
     });
-
+    console.log(sessions);
     return sessions.map((session) => this.rowToSession(session));
   }
 
@@ -148,7 +148,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
           .then(() => {
             resolve();
           })
-          .catch((error) => {
+          .catch((error: unknown) => {
             if (retries < this.connectionRetries) {
               retries++;
               setTimeout(doPoll, this.connectionRetryIntervalMs);
@@ -172,17 +172,17 @@ export class PrismaSessionStorage<T extends PrismaClient>
       state: session.state,
       is_online: session.isOnline ? 1 : 0,
       session_id: session.id,
-      scope: session.scope || null,
-      expires_at: session.expires || null,
-      access_token: session.accessToken || "",
+      scope: session.scope ?? null,
+      expires_at: session.expires ?? null,
+      access_token: session.accessToken ?? "",
       user_id: sessionParams.onlineAccessInfo?.associated_user
         .id ? BigInt(Math.floor(sessionParams.onlineAccessInfo?.associated_user
         .id)) : null,
-      user_first_name: sessionParams.onlineAccessInfo?.associated_user.first_name || null,
-      user_last_name: sessionParams.onlineAccessInfo?.associated_user.last_name || null,
-      user_email: sessionParams.onlineAccessInfo?.associated_user.email || null,
+      user_first_name: sessionParams.onlineAccessInfo?.associated_user.first_name ?? null,
+      user_last_name: sessionParams.onlineAccessInfo?.associated_user.last_name ?? null,
+      user_email: sessionParams.onlineAccessInfo?.associated_user.email ?? null,
       account_owner: sessionParams.onlineAccessInfo?.associated_user.account_owner ? 1 : 0,
-      locale: sessionParams.onlineAccessInfo?.associated_user.locale || null,
+      locale: sessionParams.onlineAccessInfo?.associated_user.locale ?? null,
       collaborator: sessionParams.onlineAccessInfo?.associated_user.collaborator ? 1 : 0,
       user_email_verified: sessionParams.onlineAccessInfo?.associated_user.email_verified ? 1 : 0,
     };
