@@ -1,8 +1,8 @@
 // eslint.config.mjs
-import js from '@eslint/js';
+import js from '@eslint/js'
+import globals from 'globals'
 import pluginTs from '@typescript-eslint/eslint-plugin';
 import parserTs from '@typescript-eslint/parser';
-import react from 'eslint-plugin-react';
 import pluginPrettier from "eslint-plugin-prettier";
 import tseslint from "typescript-eslint";
 import { fixupPluginRules } from "@eslint/compat";
@@ -10,7 +10,7 @@ import importPlugin from "eslint-plugin-import";
 import pluginReact from "eslint-plugin-react"
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-
+import react from 'eslint-plugin-react';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
@@ -24,19 +24,38 @@ export default tseslint.config(
       "dist",
       "jestCache",
       "node_modules",
-      ".yarn",
-      "./parser.js",
+      "public",
+      "analyze",
+      ".pnpm",
+      "!**/.server", "!**/.client"
     ],
   },
-  js.configs.recommended,
   {
+    settings:{
+      react:{
+        version:"detect"
+      },
+      formComponents: ["Form"],
+      linkComponents: [
+        { name: "Link", linkAttribute: "to" },
+        { name: "NavLink", linkAttribute: "to" },
+      ],
+      "import/internal-regex": "^~/",
+      "import/resolver": {
+        node: {
+          extensions: [".ts", ".tsx"],
+        },
+        typescript: {
+          alwaysTryTypes: true,
+        },
+      },
+    },
     extends: [
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
-      ...tseslint.configs.strictTypeChecked,
+      js.configs.recommended, ...tseslint.configs.recommended,
     ],
     files: ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "**/*.jsx"],
     languageOptions: {
+      ecmaVersion: 2020,
       parser: parserTs,
       parserOptions: {
         projectService: true,
@@ -51,12 +70,13 @@ export default tseslint.config(
         sourceType: 'module',
       },
       globals: {
+        ...globals.browser,
         shopify: 'readonly'
       }
     },
     plugins: {
-      '@typescript-eslint': pluginTs,
       'react': react,
+      '@typescript-eslint': pluginTs,
       prettier: pluginPrettier,
       import: fixupPluginRules(importPlugin),
     },
@@ -74,7 +94,6 @@ export default tseslint.config(
         },
       ],
 
-      // '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
       '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -88,7 +107,9 @@ export default tseslint.config(
       '@typescript-eslint/no-namespace': 'off',
       '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/no-unused-expressions': 'off',
+      '@typescript-eslint/no-floating-promises': 'warn',
       'react/react-in-jsx-scope': 'off',
+      "@typescript-eslint/dot-notation": ["error", { "allowKeywords": true }],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
