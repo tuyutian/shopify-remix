@@ -12,11 +12,9 @@ interface PrismaSessionStorageOptions {
 
 const UNIQUE_KEY_CONSTRAINT_ERROR_CODE = 'P2002';
 
-export class PrismaSessionStorage<T extends PrismaClient>
-  implements SessionStorage
-{
+export class PrismaSessionStorage<T extends PrismaClient> implements SessionStorage {
   private ready: Promise<any>;
-  private readonly tableName: string = 'sessions';
+  private readonly tableName: string = "sessions";
   private connectionRetries = 2;
   private connectionRetryIntervalMs = 5000;
 
@@ -59,25 +57,25 @@ export class PrismaSessionStorage<T extends PrismaClient>
 
     try {
       await this.getSessionTable().upsert({
-        where: {session_id: session.id},
+        where: { session_id: session.id },
         update: data,
         create: data,
       });
-      await this.createUserBySession(session)
-    } catch (error) {
+      await this.createUserBySession(session);
+    } catch (error: unknown) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === UNIQUE_KEY_CONSTRAINT_ERROR_CODE
       ) {
         console.log(
-          'Caught PrismaClientKnownRequestError P2002 - Unique Key Key Constraint, retrying upsert.',
+          "Caught PrismaClientKnownRequestError P2002 - Unique Key Key Constraint, retrying upsert.",
         );
         await this.getSessionTable().upsert({
-          where: {session_id: session.id},
+          where: { session_id: session.id },
           update: data,
           create: data,
         });
-        await this.createUserBySession(session)
+        await this.createUserBySession(session);
         return true;
       }
       throw error;
@@ -86,9 +84,9 @@ export class PrismaSessionStorage<T extends PrismaClient>
     return true;
   }
 
-  private async createUserBySession(session:Session) {
+  private async createUserBySession(session: Session) {
     if (session.id) {
-      return await AppService.saveUser(session.id)
+      return await AppService.saveUser(session.id);
     }
     return true;
   }
@@ -97,7 +95,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
     await this.ready;
 
     const row = await this.getSessionTable().findUnique({
-      where: {session_id: id},
+      where: { session_id: id },
     });
 
     if (!row) {
@@ -111,7 +109,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
     await this.ready;
 
     try {
-      await this.getSessionTable().delete({where: {session_id:id}});
+      await this.getSessionTable().delete({ where: { session_id: id } });
     } catch {
       return true;
     }
@@ -122,7 +120,9 @@ export class PrismaSessionStorage<T extends PrismaClient>
   public async deleteSessions(ids: string[]): Promise<boolean> {
     await this.ready;
 
-    await this.getSessionTable().deleteMany({where: {session_id: {in: ids}}});
+    await this.getSessionTable().deleteMany({
+      where: { session_id: { in: ids } },
+    });
 
     return true;
   }
@@ -131,9 +131,9 @@ export class PrismaSessionStorage<T extends PrismaClient>
     await this.ready;
 
     const sessions = await this.getSessionTable().findMany({
-      where: {shop},
+      where: { shop },
       take: 25,
-      orderBy: [{expires_at: 'desc'}],
+      orderBy: [{ expires_at: "desc" }],
     });
     console.log(sessions);
     return sessions.map((session) => this.rowToSession(session));
@@ -153,7 +153,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
               retries++;
               setTimeout(doPoll, this.connectionRetryIntervalMs);
             } else {
-              reject(error);
+              reject(error as Error);
             }
           });
       };
@@ -175,16 +175,26 @@ export class PrismaSessionStorage<T extends PrismaClient>
       scope: session.scope ?? null,
       expires_at: session.expires ?? null,
       access_token: session.accessToken ?? "",
-      user_id: sessionParams.onlineAccessInfo?.associated_user
-        .id ? BigInt(Math.floor(sessionParams.onlineAccessInfo?.associated_user
-        .id)) : null,
-      user_first_name: sessionParams.onlineAccessInfo?.associated_user.first_name ?? null,
-      user_last_name: sessionParams.onlineAccessInfo?.associated_user.last_name ?? null,
+      user_id: sessionParams.onlineAccessInfo?.associated_user.id
+        ? BigInt(Math.floor(sessionParams.onlineAccessInfo?.associated_user.id))
+        : null,
+      user_first_name:
+        sessionParams.onlineAccessInfo?.associated_user.first_name ?? null,
+      user_last_name:
+        sessionParams.onlineAccessInfo?.associated_user.last_name ?? null,
       user_email: sessionParams.onlineAccessInfo?.associated_user.email ?? null,
-      account_owner: sessionParams.onlineAccessInfo?.associated_user.account_owner ? 1 : 0,
+      account_owner: sessionParams.onlineAccessInfo?.associated_user
+        .account_owner
+        ? 1
+        : 0,
       locale: sessionParams.onlineAccessInfo?.associated_user.locale ?? null,
-      collaborator: sessionParams.onlineAccessInfo?.associated_user.collaborator ? 1 : 0,
-      user_email_verified: sessionParams.onlineAccessInfo?.associated_user.email_verified ? 1 : 0,
+      collaborator: sessionParams.onlineAccessInfo?.associated_user.collaborator
+        ? 1
+        : 0,
+      user_email_verified: sessionParams.onlineAccessInfo?.associated_user
+        .email_verified
+        ? 1
+        : 0,
     };
   }
 
@@ -198,7 +208,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
       firstName: String(row.user_first_name),
       lastName: String(row.user_last_name),
       email: String(row.user_email),
-      locale: String(row.locale)
+      locale: String(row.locale),
     };
     if (row.account_owner !== null) {
       sessionParams.accountOwner = row.account_owner;
@@ -223,7 +233,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
     return Session.fromPropertyArray(Object.entries(sessionParams), true);
   }
 
-  private getSessionTable(): T['sessions'] {
+  private getSessionTable(): T["sessions"] {
     return (this.prisma as any)[this.tableName];
   }
 }
@@ -231,7 +241,7 @@ export class PrismaSessionStorage<T extends PrismaClient>
 export class MissingSessionTableError extends Error {
   constructor(
     message: string,
-    public readonly cause: Error,
+    public readonly cause: unknown,
   ) {
     super(message);
   }
