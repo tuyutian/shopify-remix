@@ -33,6 +33,7 @@ jobs:
           node-version-file: "package.json"
           cache: "pnpm"
       - run: pnpm install --prefer-offline --frozen-lockfile
+      - run: pnpm run typegen
       - run: pnpm run typecheck
 
   vitest:
