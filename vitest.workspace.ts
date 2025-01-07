@@ -35,9 +35,7 @@ export default defineWorkspace([
 				name: "chromium", // 或者 "webkit" "chromium"
 				provider: "playwright",
 				// https://playwright.dev
-				providerOptions: {
-					args: ['--disable-gpu'],
-				},
+				providerOptions: {},
 			},
 		},
 	},
