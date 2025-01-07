@@ -32,10 +32,12 @@ export default defineWorkspace([
 			browser: {
 				enabled: true,
 				headless: isHeadless,
-				name: "firefox", // 或者 "webkit" "chromium"
+				name: "chromium", // 或者 "webkit" "chromium"
 				provider: "playwright",
 				// https://playwright.dev
-				providerOptions: {},
+				providerOptions: {
+					args: ['--disable-gpu'],
+				},
 			},
 		},
 	},
