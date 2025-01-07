@@ -32,7 +32,7 @@ export default defineWorkspace([
 			browser: {
 				enabled: true,
 				headless: isHeadless,
-				name: "firefox", // 或者 "webkit"
+				name: "firefox", // 或者 "webkit" "chromium"
 				provider: "playwright",
 				// https://playwright.dev
 				providerOptions: {},
