@@ -6,7 +6,7 @@ out
 coverage
 .history
 .react-router
-
+.idea
 # Other Coverage tools
 *.lcov
 
@@ -74,6 +74,18 @@ blob-report
 .idea/workspace.xml
 .idea/usage.statistics.xml
 .idea/shelf
+
+
+# Make it harder to accidentally commit files in the root
+/*.json
+/*.yaml
+/*.yml
+/*.toml
+/*.ts
+/*.tsx
+/*.js
+/*.jsx
+/*.sh
 
 # Dont commit sqlite database files
 *.db

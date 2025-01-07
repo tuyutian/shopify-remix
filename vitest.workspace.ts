@@ -1,7 +1,7 @@
 import { defineWorkspace } from "vitest/config"
 
 // biome-ignore lint/nursery/noProcessEnv: Figure out the bug with --browser.headless, should work without this at all
-const isHeadless = process.argv.includes("--browser.headless") || !!process.env.CI
+const isHeadless = process.argv.some((arg) => arg.includes("--browser.headless")) || !!process.env.CI
 
 export default defineWorkspace([
 	{
@@ -32,7 +32,7 @@ export default defineWorkspace([
 			browser: {
 				enabled: true,
 				headless: isHeadless,
-				name: "chromium",
+				name: "firefox", // 或者 "webkit"
 				provider: "playwright",
 				// https://playwright.dev
 				providerOptions: {},
