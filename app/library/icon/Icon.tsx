@@ -9,6 +9,7 @@ export enum IconSize {
 	md = "24",
 	lg = "32",
 	xl = "40",
+	unlimited = "100%",
 }
 
 export type IconSizes = keyof typeof IconSize
@@ -30,8 +31,8 @@ export const Icon = ({ name, testId, className, size = "md", ...props }: IconPro
 	return (
 		<svg
 			className={iconClasses}
-			fill={"currentColor"}
-			stroke={"currentColor"}
+			fill="currentColor"
+			stroke="currentColor"
 			width={iconSize}
 			height={iconSize}
 			data-testid={testId}

@@ -1,16 +1,8 @@
 {
 	"$schema": "https://unpkg.com/knip@5/schema.json",
-	"entry": ["scripts/*.{ts,js}", "app/routes.ts","vite.config.ts", "app/server/*.ts", "app/library/icon/Icon.tsx"],
+	"entry": ["scripts/*.{ts,js}", "app/routes.ts", "app/server/*.ts", "vite.config.ts",  "app/components/ui/*.tsx", "app/library/icon/Icon.tsx"],
 	"remix": true,
-	"lefthook": true,
-	"project": [
-		"**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}",
-		"vite.config.ts"
-	],
-	"ignoreDependencies": [
-		"tailwindcss"
-	],
-	"ignore": [
-		"app/library/icon/icons/types.ts"
-	]
+	"project": ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}","vite.config.ts"],
+	"ignore": ["app/library/icon/icons/types.ts"],
+	"ignoreDependencies": ["@babel/preset-typescript", "babel-plugin-react-compiler"]
 }

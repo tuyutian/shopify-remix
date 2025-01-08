@@ -11,7 +11,11 @@ export async function loader({ context }: Route.LoaderArgs) {
 	return { lang, clientEnv }
 }
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: tailwindcss }]
+export const links: LinksFunction = () => [
+	{ rel: "stylesheet", href: tailwindcss },
+	{ rel: "preconnect", href: "https://cdn.shopify.com/" },
+	{ rel: "stylesheet", href: "https://cdn.shopify.com/static/fonts/inter/v4/styles.css" },
+]
 
 export const handle = {
 	i18n: "common",
@@ -37,6 +41,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 				<Meta />
 				<Links />
 			</head>

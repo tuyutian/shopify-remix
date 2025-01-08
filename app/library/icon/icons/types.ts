@@ -2,6 +2,7 @@
 
 export const iconNames = [
   "ShoppingCart",
+  "404",
 ] as const
 
 export type IconName = typeof iconNames[number]
