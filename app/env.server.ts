@@ -3,6 +3,15 @@ import { z } from "zod"
 const envSchema = z.object({
 	NODE_ENV: z.enum(["development", "production", "test"]),
 	APP_DEPLOYMENT_ENV: z.enum(["staging", "production"]),
+	SHOPIFY_API_KEY: z.string(),
+	SHOPIFY_API_SECRET: z.string(),
+	SHOPIFY_SHIPMENT_STATUS_UPDATED_ID: z.string(),
+	SHOPIFY_THEME_EXTENSION_ID: z.string(),
+	SHOPIFY_APP_URL: z.string(),
+	FRONTEND_PORT: z.number(),
+	SCOPES: z.string(),
+	SHOP_CUSTOM_DOMAIN: z.string(),
+	DATABASE_URL: z.string(),
 })
 
 type APP_ENV = z.infer<typeof envSchema>

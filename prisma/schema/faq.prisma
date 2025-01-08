@@ -1,0 +1,16 @@
+model faqs {
+  id           Int            @id @default(autoincrement())
+  title        String         @default("") ///文章标题
+  cate_id      Int            @default(0) @db.TinyInt ///文章类别id
+  language     String         @default("en") ///文章语言
+  show         Int            @default(0) @db.TinyInt ///是否显示
+  order        Int ///文章显示的顺序
+  views        Int            @default(0) @db.TinyInt ///浏览量
+  popularity   Int            @default(0) @db.TinyInt /// 热度
+  is_it_useful Int            @default(0) @db.TinyInt /// 是否有用
+  editor       String         @default("0") ///编辑人
+  content      String         @db.MediumText
+  created_at   DateTime?
+  updated_at   DateTime?
+  faq_category faq_categories @relation(fields: [cate_id], references: [id]) // belong a category
+}

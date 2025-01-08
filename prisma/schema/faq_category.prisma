@@ -1,0 +1,9 @@
+model faq_categories {
+  id            Int       @id @default(autoincrement())
+  category_name String    @default("") ///文章分类的名称
+  order         Int       @default(0) ///分类显示的排序,
+  created_at    DateTime?
+  updated_at    DateTime?
+
+  faqs faqs[]
+}

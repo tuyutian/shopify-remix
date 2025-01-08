@@ -1,0 +1,43 @@
+model users {
+  shop              String
+  id                Int       @id @default(autoincrement())
+  name              String    @default("") /// 用户名,
+  token             String    @default("") /// token
+  vendor            String    @default("") /// 店铺拥有者
+  store_name        String    @default("") /// shopify domain
+  store_real_name   String    @default("") /// 店铺真实域名
+  phone             String    @default("") @db.Char(100)
+  email             String    @default("") @db.Char(200)
+  plans             Int       @default(0) @db.MediumInt /// 套餐等级
+  total             Int       @default(0) /// '用户套餐总量',
+  consume           Int       @default(0) /// '用户套餐使用',
+  old_total         Int       @default(0) /// '用户旧套餐总量',
+  old_consume       Int       @default(0) /// '用户旧套餐使用',
+  free_order_use    Int       @default(0) /// '免费单号使用量',
+  time_zone         String    @db.VarChar(32) ///用户时区
+  country           String    @default("")
+  province          String    @default("")
+  city              String    @default("")
+  address           String    @default("")
+  zip               String    @db.VarChar(24)
+  longitude         String    @default("") @db.Char(24)
+  latitude          String    @default("") @db.Char(24)
+  primary_locale    String    @default("") @db.Char(24)
+  currency          String    @default("") @db.Char(10)
+  shopify_plan_name String    @db.VarChar(30)
+  shop_create_time  DateTime?
+  redact            Int       @default(0) @db.TinyInt ///'是否删除了'
+  auto_sync_on      Int       @default(1) @db.TinyInt
+  rating            Int       @default(0) @db.TinyInt ///'用户shopify评论星级(0未评论)'
+  is_first_sync     Int       @default(1) @db.TinyInt
+  is_token_error    Int       @default(0) @db.TinyInt
+  sync_day          Int       @default(30) @db.MediumInt /// '单号同步天数：1、7、30、60',
+  is_active         Int       @default(0) @db.TinyInt ///'是否活跃用户；0，否；1，是'
+  is_delete         Int       @default(0) @db.TinyInt ///'卸载店铺'
+  last_login_time   DateTime? /// '最后登录时间',
+  email_verified_at Int?
+  password          String    @default("")
+  created_at        DateTime?
+  updated_at        DateTime?
+  old_id            Int? ///'旧用户体系id'
+}

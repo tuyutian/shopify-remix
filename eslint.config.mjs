@@ -24,6 +24,8 @@ export default tseslint.config(
 			"analyze",
 			"resource",
 			"public",
+			"extensions",
+			".shopify",
 			"tailwind.config.ts",
 			".pnpm",
 			".react-router",
@@ -102,7 +104,7 @@ export default tseslint.config(
 					allow: ["arrowFunctions", "functions", "methods"],
 				},
 			],
-			"@typescript-eslint/no-explicit-any": "off",
+			// "@typescript-eslint/no-explicit-any": "off",
 			"@typescript-eslint/no-namespace": "off",
 			"@typescript-eslint/no-non-null-assertion": "error",
 			"@typescript-eslint/no-unused-expressions": "off",
@@ -138,6 +140,7 @@ export default tseslint.config(
 			"@typescript-eslint/no-unnecessary-condition": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
 			"@typescript-eslint/no-unsafe-member-access": "off",
+			"no-console": "error",
 		},
 	}
 )

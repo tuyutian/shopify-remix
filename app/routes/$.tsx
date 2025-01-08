@@ -1,5 +1,4 @@
-import { type MetaFunction, useNavigate } from "react-router"
-import { Button } from "~/components/ui/button"
+import { Link, type MetaFunction } from "react-router"
 import { Icon } from "~/library/icon/Icon"
 export const meta: MetaFunction = () => {
 	return [
@@ -15,8 +14,6 @@ export const meta: MetaFunction = () => {
 	]
 }
 function Page404() {
-	const navigate = useNavigate()
-
 	return (
 		<div className="container mx-auto">
 			<div className="h-[80vh] items-center grid gap-x-5 ">
@@ -27,9 +24,11 @@ function Page404() {
 					<div className="flex flex-col gap-6">
 						<div className="text-xl">There&#39;s no page at this address</div>
 						<div className="text-lg">Check the URL and try again, or contact us to get what you need.</div>
-						<Button variant="link" onClick={() => navigate("/")}>
-							Return to home
-						</Button>
+						<div>
+							<Link className="text-sky-600" to="/">
+								Return to home
+							</Link>
+						</div>
 					</div>
 				</div>
 			</div>

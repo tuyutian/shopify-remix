@@ -1,5 +1,6 @@
 {
 	"include": ["env.d.ts", "**/*.ts", "**/*.tsx", "**/**/.server/**/*.ts", "./eslint.config.mjs",".react-router/types/**/*"],
+	"exclude": ["extensions"],
 	"compilerOptions": {
 		"types": ["vitest/globals", "@vitest/browser/providers/playwright"],
 		"lib": ["DOM", "DOM.Iterable", "ES2023"],
@@ -17,7 +18,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"~/*": ["./app/*"],
-			"@/*": ["./app/*"],
+			"@/*": ["./app/*"]
 		},
 		"rootDirs": [".", "./.react-router/types"],
 		"plugins": [{ "name": "@react-router/dev" }],

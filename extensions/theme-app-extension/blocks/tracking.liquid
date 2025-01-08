@@ -1,0 +1,54 @@
+{% render 'tracking', settings: block.settings %}
+{% schema %}
+{
+  "name": "Classic Tracking Widget",
+  "target": "section",
+  "stylesheet": "tracking_index.css",
+  "available_if": "{{app.metafields.track_page.my_track_page}}",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Style",
+      "info": "Inherit settings from [classic template](/admin/apps/trackingmore/tracking-page/classic)"
+    },
+    {
+      "type": "checkbox",
+      "id": "TmBrandLR",
+      "label": "Right-to-left",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Order lookup widget"
+    },
+    {
+      "type": "select",
+      "id": "TmBrandType",
+      "label": "branding Type",
+      "options": [
+        {
+          "value": "0",
+          "label": "Order number and email match"
+        },
+        {
+          "value": "1",
+          "label": "Just Track number"
+        },
+        {
+          "value": "2",
+          "label": "Order number and phone match"
+        },
+        {
+          "value": "3",
+          "label": "Order number and merge track"
+        }
+      ],
+      "default": "0"
+    },
+    {
+      "type": "paragraph",
+      "content": "[Learn more](https://support.trackingmore.com/en/article/trackingmore-tracking-widget-classic-1ownu2e/) about the app block."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,17 @@
+[[extensions]]
+name = "Shipment status updated"
+type = "flow_trigger"
+handle = "shipment-status-updated"
+description = "When shipment status updated ,flow will be trigger"
+
+[settings]
+
+  [[settings.fields]]
+  type = "order_reference"
+
+  [[settings.fields]]
+  type = "single_line_text_field"
+  key = "ShipmentStatus"
+  description = "The current supported status: in_transit, out_of_delivery, delivered, failed_attempt, exception"
+
+

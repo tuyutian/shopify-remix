@@ -22,7 +22,7 @@ export const getLoadContext = async (c: Context) => {
 	}
 }
 
-interface LoadContext extends Awaited<ReturnType<typeof getLoadContext>> {}
+type LoadContext = Awaited<ReturnType<typeof getLoadContext>>
 
 /**
  * Declare our loaders and actions context type
