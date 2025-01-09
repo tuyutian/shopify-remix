@@ -8,7 +8,7 @@ const envSchema = z.object({
 	SHOPIFY_SHIPMENT_STATUS_UPDATED_ID: z.string(),
 	SHOPIFY_THEME_EXTENSION_ID: z.string(),
 	SHOPIFY_APP_URL: z.string(),
-	FRONTEND_PORT: z.number(),
+	FRONTEND_PORT: z.coerce.number(),
 	SCOPES: z.string(),
 	SHOP_CUSTOM_DOMAIN: z.string(),
 	DATABASE_URL: z.string(),
@@ -36,7 +36,7 @@ export const initEnv = () => {
 	// Do not log the message when running tests
 	if (env.NODE_ENV !== "test") {
 		// biome-ignore lint/suspicious/noConsole: We want this to be logged
-		console.log("✅ Environment variables loaded successfully")
+		console.debug("✅ Environment variables loaded successfully")
 	}
 	return envData.data
 }
@@ -51,8 +51,12 @@ export const getClientEnv = () => {
 	const serverEnv = env
 	return {
 		NODE_ENV: serverEnv.NODE_ENV,
+		SHOPIFY_API_KEY: serverEnv.SHOPIFY_API_KEY,
+		SHOPIFY_APP_URL: serverEnv.SHOPIFY_APP_URL,
 	}
 }
+
+export const getServerEnv = () => env
 
 type CLIENT_ENV = ReturnType<typeof getClientEnv>
 

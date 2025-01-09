@@ -5,6 +5,7 @@ import { useChangeLanguage } from "remix-i18next/react"
 import type { Route } from "./+types/root"
 import { LanguageSwitcher } from "./library/language-switcher"
 import tailwindcss from "./tailwind.css?url"
+import "@shopify/polaris/build/esm/styles.css"
 
 export async function loader({ context }: Route.LoaderArgs) {
 	const { lang, clientEnv } = context

@@ -1,7 +1,7 @@
 import type { Prisma } from "@prisma/client"
 import { PrismaClient } from "@prisma/client"
-import { initEnv } from "~/env.server"
-import logger from "~/library/logger"
+import { getServerEnv } from "~/env.server"
+import logger from "~/server/logger"
 
 const prismaGlobal = globalThis as unknown as {
 	prisma?: PrismaClient
@@ -28,7 +28,7 @@ const config: Prisma.PrismaClientOptions = {
 }
 
 const prisma: PrismaClient = prismaGlobal.prisma || new PrismaClient(config)
-const env = initEnv()
+const env = getServerEnv()
 if (env.NODE_ENV !== "production") {
 	if (!prismaGlobal.prisma) {
 		prismaGlobal.prisma = new PrismaClient(config)

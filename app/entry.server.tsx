@@ -5,6 +5,7 @@ import { isbot } from "isbot"
 import { renderToPipeableStream } from "react-dom/server"
 import { I18nextProvider, initReactI18next } from "react-i18next"
 import { type AppLoadContext, type EntryContext, ServerRouter } from "react-router"
+import logger from "~/server/logger"
 import i18n from "./localization/i18n" // your i18n configuration file
 import i18nextOpts from "./localization/i18n.server"
 import { resources } from "./localization/resource"
@@ -62,8 +63,7 @@ export default async function handleRequest(
 				},
 				onError(error: unknown) {
 					didError = true
-					// biome-ignore lint/suspicious/noConsole: We console log the error
-					console.error(error)
+					logger.error(error)
 				},
 			}
 		)

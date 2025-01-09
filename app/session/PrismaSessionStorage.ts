@@ -2,7 +2,7 @@ import type { PrismaClient, sessions as Row } from "@prisma/client"
 import { Prisma } from "@prisma/client"
 import { Session } from "@shopify/shopify-api"
 import type { SessionStorage } from "@shopify/shopify-app-session-storage"
-import logger from "~/library/logger"
+import logger from "~/server/logger"
 
 interface PrismaSessionStorageOptions {
 	tableName?: string

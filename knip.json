@@ -4,5 +4,5 @@
 	"remix": true,
 	"project": ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}","vite.config.ts"],
 	"ignore": ["app/library/icon/icons/types.ts","extensions/**","app/shopify.server.ts"],
-	"ignoreDependencies": ["@babel/preset-typescript", "babel-plugin-react-compiler"]
+	"ignoreDependencies": ["@babel/preset-typescript", "babel-plugin-react-compiler","pino-pretty"]
 }

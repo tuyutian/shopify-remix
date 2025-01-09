@@ -1,4 +1,5 @@
-import { Link, type MetaFunction } from "react-router"
+import { Link } from "@shopify/polaris"
+import type { MetaFunction } from "react-router"
 import { Icon } from "~/library/icon/Icon"
 export const meta: MetaFunction = () => {
 	return [
@@ -25,7 +26,7 @@ function Page404() {
 						<div className="text-xl">There&#39;s no page at this address</div>
 						<div className="text-lg">Check the URL and try again, or contact us to get what you need.</div>
 						<div>
-							<Link className="text-sky-600" to="/">
+							<Link url="/" removeUnderline>
 								Return to home
 							</Link>
 						</div>

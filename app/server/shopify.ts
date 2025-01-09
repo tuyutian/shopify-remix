@@ -1,10 +1,10 @@
 import "@shopify/shopify-app-remix/adapters/node"
 import { PrismaSessionStorage } from "@/session/PrismaSessionStorage"
 import { ApiVersion, AppDistribution, shopifyApp } from "@shopify/shopify-app-remix/server"
-import { initEnv } from "~/env.server"
+import { getServerEnv } from "~/env.server"
 import prisma from "./prisma"
 
-const env = initEnv()
+const env = getServerEnv()
 
 const shopify = shopifyApp({
 	apiKey: env.SHOPIFY_API_KEY,

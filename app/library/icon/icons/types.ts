@@ -2,6 +2,7 @@
 
 export const iconNames = [
   "ShoppingCart",
+  "Shopify",
   "404",
 ] as const
 
