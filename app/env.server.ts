@@ -8,7 +8,7 @@ const envSchema = z.object({
 	SHOPIFY_SHIPMENT_STATUS_UPDATED_ID: z.string(),
 	SHOPIFY_THEME_EXTENSION_ID: z.string(),
 	SHOPIFY_APP_URL: z.string(),
-	FRONTEND_PORT: z.coerce.number(),
+	PORT: z.coerce.number(),
 	SCOPES: z.string(),
 	SHOP_CUSTOM_DOMAIN: z.string(),
 	DATABASE_URL: z.string(),

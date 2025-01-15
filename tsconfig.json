@@ -2,7 +2,7 @@
 	"include": ["env.d.ts", "**/*.ts", "**/*.tsx", "**/**/.server/**/*.ts", "./eslint.config.mjs",".react-router/types/**/*"],
 	"exclude": ["extensions"],
 	"compilerOptions": {
-		"types": ["vitest/globals", "@vitest/browser/providers/playwright"],
+		"types": ["vitest/globals", "@vitest/browser/providers/playwright","@react-router/node", "vite/client"],
 		"lib": ["DOM", "DOM.Iterable", "ES2023"],
 		"isolatedModules": true,
 		"esModuleInterop": true,
