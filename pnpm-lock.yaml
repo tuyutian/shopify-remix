@@ -32,9 +32,6 @@ importers:
       '@react-router/serve':
         specifier: '*'
         version: 7.1.1(react-router@7.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.7.2)
-      '@shopify/app-bridge-react':
-        specifier: 4.1.6
-        version: 4.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@shopify/polaris':
         specifier: ^13.9.2
         version: 13.9.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -139,9 +136,6 @@ importers:
       '@shopify/api-codegen-preset':
         specifier: ^1.1.4
         version: 1.1.4(@types/node@22.10.5)(typescript@5.7.2)
-      '@shopify/app-bridge-types':
-        specifier: 0.0.16
-        version: 0.0.16
       '@shopify/shopify-api':
         specifier: 11.7.0
         version: 11.7.0
@@ -2532,15 +2526,6 @@ packages:
 
   '@shopify/api-codegen-preset@1.1.4':
     resolution: {integrity: sha512-l2jZfhVllvKXuGUIzU7OUVUXeL84jhZNqKwyaUBPvKus0eUjBkMsDtvLTpUHLUj3ghKBJYvtg+VvV4gBoDdY/g==}
-
-  '@shopify/app-bridge-react@4.1.6':
-    resolution: {integrity: sha512-/Txi1L8ihV2ZK1w7Qh6+wsCITknQI7XS89nYYbqF7y2+hne446VM2DEsO7EVWz0MFc2tFA2IILjxdwVYSREYWw==}
-    peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
-
-  '@shopify/app-bridge-types@0.0.16':
-    resolution: {integrity: sha512-UjKot8gOAv0qc9dxaooQv9fl1ob6zlupuOAgexj++H8cYQuAD8I6cbJ/whY4skqRXM/qZn68vuERq3eeDlByJg==}
 
   '@shopify/graphql-client@1.2.1':
     resolution: {integrity: sha512-wySl/G7M/ZDxtcUEOF24wyfTigFnzW0hr3AzcldoQTl0OToLK2mQ7FBDSSwmfa00VrQ3TQwFM+tAAByK9tr3JQ==}
@@ -8915,14 +8900,6 @@ snapshots:
       - supports-color
       - typescript
       - utf-8-validate
-
-  '@shopify/app-bridge-react@4.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
-    dependencies:
-      '@shopify/app-bridge-types': 0.0.16
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-
-  '@shopify/app-bridge-types@0.0.16': {}
 
   '@shopify/graphql-client@1.2.1': {}
 
